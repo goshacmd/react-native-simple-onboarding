@@ -5,14 +5,29 @@ import tinycolor from 'tinycolor2';
 import PageData from './components/PageData';
 import Paginator from './components/Paginator';
 
+var {height, width} = Dimensions.get('window');
+
 export default class Onboarding extends Component {
   constructor() {
     super();
 
     this.state = {
       currentPage: 0,
+      layout:{
+        height:height,
+        width: width,
+      }
     };
   }
+
+  onLayout = (event) => {
+   this.setState({
+      layout: {
+        height: event.nativeEvent.layout.height,
+        width:  event.nativeEvent.layout.width,
+      }
+    });
+  };
 
   updatePosition = (event) => {
     const { contentOffset, layoutMeasurement } = event.nativeEvent;
@@ -36,14 +51,13 @@ export default class Onboarding extends Component {
   };
 
   render() {
-    const { width, height } = Dimensions.get('window');
     const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
     const currentPage = pages[this.state.currentPage] || pages[0];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
-      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }}>
+      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }} onLayout={this.onLayout.bind(this)}>
         <ScrollView
           ref="scroll"
           pagingEnabled={true}
@@ -59,8 +73,8 @@ export default class Onboarding extends Component {
               image={image}
               title={title}
               subtitle={subtitle}
-              width={width}
-              height={height}
+              width={this.state.layout.width}
+              height={this.state.layout.height}
             />
           ))}
         </ScrollView>
