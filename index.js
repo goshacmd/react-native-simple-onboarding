@@ -5,7 +5,7 @@ import tinycolor from 'tinycolor2';
 import PageData from './components/PageData';
 import Paginator from './components/Paginator';
 
-var {height, width} = Dimensions.get('window');
+var { height, width } = Dimensions.get('window');
 
 export default class Onboarding extends Component {
   constructor() {
@@ -14,7 +14,7 @@ export default class Onboarding extends Component {
     this.state = {
       currentPage: 0,
       layout:{
-        height:height,
+        height: height,
         width: width,
       }
     };
@@ -35,7 +35,7 @@ export default class Onboarding extends Component {
   };
 
   updatePosition = (event) => {
-    const { contentOffset, layoutMeasurement } = event.nativeEvent;
+    const { contentOffset } = event.nativeEvent;
     const pageFraction = contentOffset.x / this.state.layout.width;
     const page = Math.round(pageFraction);
     const isLastPage = this.props.pages.length === page + 1;
