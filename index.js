@@ -27,11 +27,16 @@ export default class Onboarding extends Component {
         width:  event.nativeEvent.layout.width,
       }
     });
+
+   // adjust the scrolling
+    const { currentPage } = this.state;
+    const offsetX = currentPage * event.nativeEvent.layout.width;
+    this.refs.scroll.scrollTo({ x: offsetX, animated: false });
   };
 
   updatePosition = (event) => {
     const { contentOffset, layoutMeasurement } = event.nativeEvent;
-    const pageFraction = contentOffset.x / layoutMeasurement.width;
+    const pageFraction = contentOffset.x / this.state.layout.width;
     const page = Math.round(pageFraction);
     const isLastPage = this.props.pages.length === page + 1;
     if (isLastPage && pageFraction - page > 0.3) {
@@ -42,10 +47,9 @@ export default class Onboarding extends Component {
   };
 
   goNext = () => {
-    const { width } = Dimensions.get('window');
     const { currentPage } = this.state;
     const nextPage = currentPage + 1;
-    const offsetX = nextPage * width;
+    const offsetX = nextPage * this.state.layout.width;
     this.refs.scroll.scrollTo({ x: offsetX, animated: true });
     this.setState({ currentPage: nextPage });
   };
@@ -57,7 +61,7 @@ export default class Onboarding extends Component {
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
-      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }} onLayout={this.onLayout.bind(this)}>
+      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }} onLayout={this.onLayout}>
         <ScrollView
           ref="scroll"
           pagingEnabled={true}
