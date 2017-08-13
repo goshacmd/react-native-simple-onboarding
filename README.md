@@ -42,11 +42,14 @@ Props:
   * `image` (required): a component instance displayed at the top of the page
   * `title` (required): a string title
   * `subtitle` (required): a string subtitle
+  * `customComponent` (optional): A custom component to render under the image, title, and subtitle. 
+  * `canGoNext` (optional): Whether to allow the user to scroll to the next page. Defaults to `true`.
 * `onEnd` (optional): a callback that is fired after the onboarding is complete
 * `bottomOverlay` (optional): a bool flag indicating whether the bottom bar overlay should be shown. Defaults to `true`.
-* `showSkip` (optional): a bool flag indicating whether the Skip button should be show. Defaults to `true`.
-* `showNext` (optional): a bool flag indicating whether the Next arrow button should be show. Defaults to `true`.
-* `showDone` (optional): a bool flag indicating whether the Done checkmark button should be show. Defaults to `true`.
+* `showSkip` (optional): a bool flag indicating whether the Skip button should be shown. Defaults to `true`.
+* `showNext` (optional): a bool flag indicating whether the Next arrow button should be shown. Defaults to `true`.
+* `showDone` (optional): a bool flag indicating whether the Done checkmark button should be shown. Defaults to `true`.
+* `showBack` (optional): a bool flag indicating whether the Back arrow button should be shown. Defaults to `false` and will only be `true` if `showSkip` is `false `.
 
 ## To Do
 

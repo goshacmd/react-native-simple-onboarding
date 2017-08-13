@@ -19,6 +19,13 @@ const NextButton = ({ isLight, ...props }) => (
     →
   </SymbolButton>
 );
+
+const BackButton = ({ isLight, ...props }) => (
+  <SymbolButton {...props} textStyle={getDefaultStyle(isLight)}>
+    ←
+  </SymbolButton>
+);
+
 const DoneButton = ({ isLight, size, ...props }) => (
   <SymbolButton {...props} size={size} textStyle={getDefaultStyle(isLight)} style={{ borderRadius: size / 2, backgroundColor: 'rgba(255, 255, 255, 0.10)' }}>
     ✓
@@ -26,13 +33,14 @@ const DoneButton = ({ isLight, size, ...props }) => (
 );
 
 const BUTTON_SIZE = 40;
-const Paginator = ({ isLight, overlay, showSkip, showNext, showDone, pages, currentPage, onEnd, onNext }) => (
+const Paginator = ({ isLight, overlay, showSkip, showNext, showDone, showBack, pages, currentPage, onEnd, onNext, onBack }) => (
   <View style={{ ...styles.container, ...(overlay ? styles.containerOverlay : {}) }}>
     <View style={styles.buttonLeft}>
       {showSkip && currentPage + 1 !== pages ?
         <SkipButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} /> :
         null
       }
+      {!showSkip && showBack && currentPage > 0 && <BackButton isLight={isLight} size={BUTTON_SIZE} onPress={onBack}/>}
     </View>
     <PageDots isLight={isLight} pages={pages} currentPage={currentPage} />
     <View style={styles.buttonRight}>

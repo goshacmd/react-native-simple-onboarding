@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, {PropTypes} from 'react';
+import {View, Text} from 'react-native';
 
 const Page = ({ width, height, children }) => (
   <View style={{ width, height }}>
@@ -15,7 +15,8 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
+
+const PageData = ({customComponent, isLight, image, title, subtitle, ...rest}) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
@@ -27,9 +28,14 @@ const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
       <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
         {subtitle}
       </Text>
+      {customComponent}
     </PageContent>
   </Page>
 );
+
+PageData.propTypes = {
+  customComponent: PropTypes.element,
+};
 
 const styles = {
   content: {
