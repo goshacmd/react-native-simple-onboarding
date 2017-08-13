@@ -43,6 +43,7 @@ Props:
   * `title` (required): a string title
   * `subtitle` (required): a string subtitle
   * `input` (optional): Boolean for whether to include a TextInput component. Default false. 
+  * `forceInput` (optional): Boolean for whether to force user to use input before continuing. Default false.
   * `onChangeText`: (optional) The callback that passes the string of user input.  
   * `inputKeyboardType`: (optional) the keyboard type for the InputText component (see https://facebook.github.io/react-native/docs/textinput.html)
   * `placeholder` (optional): a placeholder for the input component
