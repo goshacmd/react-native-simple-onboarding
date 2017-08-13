@@ -35,6 +35,7 @@ export default class Onboarding extends Component {
     this.setState({ currentPage: nextPage });
   };
 
+
   render() {
     const { width, height } = Dimensions.get('window');
     const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
@@ -52,15 +53,19 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, subtitle }, idx) => (
+          {pages.map(({ image, title, subtitle, input, onChangeText, inputKeyboardType, placeholder }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
               image={image}
+              height={height}
+              width={width}
               title={title}
               subtitle={subtitle}
-              width={width}
-              height={height}
+              input={input}
+              onChangeText={onChangeText}
+              inputKeyboardType={inputKeyboardType}
+              placeholder={placeholder}
             />
           ))}
         </ScrollView>
