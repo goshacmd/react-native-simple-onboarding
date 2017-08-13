@@ -42,6 +42,11 @@ Props:
   * `image` (required): a component instance displayed at the top of the page
   * `title` (required): a string title
   * `subtitle` (required): a string subtitle
+  * `input` (optional): Boolean for whether to include a TextInput component. Default false. 
+  * `forceInput` (optional): Boolean for whether to force user to use input before continuing. Default false.
+  * `onChangeText`: (optional) The callback that passes the string of user input.  
+  * `inputKeyboardType`: (optional) the keyboard type for the InputText component (see https://facebook.github.io/react-native/docs/textinput.html)
+  * `placeholder` (optional): a placeholder for the input component
 * `onEnd` (optional): a callback that is fired after the onboarding is complete
 * `bottomOverlay` (optional): a bool flag indicating whether the bottom bar overlay should be shown. Defaults to `true`.
 * `showSkip` (optional): a bool flag indicating whether the Skip button should be show. Defaults to `true`.

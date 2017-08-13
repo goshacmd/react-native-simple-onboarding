@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 
 const Page = ({ width, height, children }) => (
   <View style={{ width, height }}>
@@ -15,7 +15,8 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
+
+const PageData = ({inputKeyboardType, placeholder, onChangeText, input, isLight, image, title, subtitle, ...rest}) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
@@ -27,9 +28,25 @@ const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
       <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
         {subtitle}
       </Text>
+      {input && <View style={{ ...styles.inputContainer, ...(isLight ? styles.inputContainerLight : {}) }}>
+        <TextInput
+          multiline={false}
+          style={{ ...styles.input, ...(isLight ? styles.inputLight : {}) }}
+          placeholder={placeholder}
+          placeholderTextColor={isLight ? 'rgba(255, 255, 255, 0.7)' : '#fff'}
+          onChangeText={onChangeText}
+          keyboardType={inputKeyboardType}
+        />
+      </View>}
     </PageContent>
   </Page>
 );
+
+PageData.defaultProps = {
+  onChangeText: () => {},
+  placeholder: '',
+  input: false
+};
 
 const styles = {
   content: {
@@ -37,6 +54,24 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  inputContainer: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 0.5,
+    paddingTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputContainerLight: {
+    borderBottomColor: 'rgba(0, 0, 0, 0.7)',
+  },
+  input: {
+    height: 40,
+    textAlign: 'center',
+    color: '#fff',
+  },
+  inputLight: {
+    color: 'rgba(0, 0, 0, 0.7)',
   },
   image: {
     flex: 0,
