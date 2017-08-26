@@ -1,34 +1,34 @@
-import React, {PropTypes} from 'react';
-import {View, Text} from 'react-native';
+import React, { PropTypes } from 'react';
+import { View, Text } from 'react-native';
 
 const Page = ({ width, height, children }) => (
   <View style={{ width, height }}>
-    {children}
+    { children }
   </View>
 );
 
 const PageContent = ({ children }) => (
   <View style={styles.content}>
     <View style={{ flex: 0 }}>
-      {children}
+      { children }
     </View>
   </View>
 );
 
 
-const PageData = ({customComponent, isLight, image, title, subtitle, ...rest}) => (
-  <Page {...rest}>
+const PageData = ({ customComponent, isLight, image, title, subtitle, ...rest }) => (
+  <Page { ...rest }>
     <PageContent>
-      <View style={styles.image}>
-        {image}
+      <View style={ styles.image }>
+        { image }
       </View>
       <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
-        {title}
+        { title }
       </Text>
       <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
-        {subtitle}
+        { subtitle }
       </Text>
-      {customComponent}
+      { customComponent }
     </PageContent>
   </Page>
 );
