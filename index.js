@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import tinycolor from 'tinycolor2';
 
