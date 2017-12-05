@@ -32,8 +32,12 @@ export default class Onboarding extends Component {
     const { currentPage } = this.state;
     const nextPage = currentPage + 1;
     const offsetX = nextPage * width;
-    this.refs.scroll.scrollTo({ x: offsetX, animated: true });
-    this.setState({ currentPage: nextPage });
+    this.refs.scroll.scrollTo({
+      x: offsetX,
+      animated: true
+    }, () => {
+      this.setState({ currentPage: nextPage });
+    });
   };
 
   render() {
