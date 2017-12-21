@@ -15,16 +15,16 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
+const PageData = ({ isLight, image, title, subtitle, titleStyles, subtitleStyles, ...rest }) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
         {image}
       </View>
-      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
+      <Text style={[styles.title, titleStyles, (isLight ? styles.titleLight : {}) ]}>
         {title}
       </Text>
-      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
+      <Text style={[styles.subtitle, subtitleStyles, (isLight ? styles.subtitleLight : {}) ]}>
         {subtitle}
       </Text>
     </PageContent>
