@@ -57,13 +57,15 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, subtitle }, idx) => (
+          {pages.map(({ image, title, subtitle, titleStyles, subtitleStyles }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
               image={image}
               title={title}
               subtitle={subtitle}
+              titleStyles={titleStyles}
+              subtitleStyles={subtitleStyles}
               width={width}
               height={height}
             />
