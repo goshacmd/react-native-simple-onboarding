@@ -10,7 +10,7 @@ const getDefaultStyle = (isLight) => ({
 
 const SkipButton = ({ isLight, ...props }) => (
   <TextButton {...props} textStyle={getDefaultStyle(isLight)}>
-    {this.props.skipText || Skip}
+    {this.props.skipText || 'Skip'}
   </TextButton>
 );
 
