@@ -42,7 +42,7 @@ export default class Onboarding extends Component {
 
   render() {
     const { width, height } = Dimensions.get('window');
-    const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
+    const { pages, bottomOverlay, showSkip, showNext, showDone, skipText } = this.props;
     const currentPage = pages[this.state.currentPage] || pages[0];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
@@ -74,6 +74,7 @@ export default class Onboarding extends Component {
         <Paginator
           isLight={isLight}
           overlay={bottomOverlay}
+          skipText={skipText}
           showSkip={showSkip}
           showNext={showNext}
           showDone={showDone}
@@ -96,6 +97,7 @@ Onboarding.propTypes = {
   })).isRequired,
   bottomOverlay: PropTypes.bool,
   showSkip: PropTypes.bool,
+  skipText: PropTypes.string,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
 };
