@@ -8,7 +8,7 @@ const getDefaultStyle = (isLight) => ({
   color: isLight ? 'rgba(0, 0, 0, 0.8)' : '#fff',
 });
 
-const SkipButton = ({ isLight, ...props, skipText }) => (
+const SkipButton = ({ isLight, skipText, ...props }) => (
   <TextButton {...props} textStyle={getDefaultStyle(isLight)}>
     {skipText || 'Skip'}
   </TextButton>
