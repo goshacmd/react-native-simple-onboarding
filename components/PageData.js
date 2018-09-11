@@ -54,7 +54,8 @@ const styles = {
   },
   subtitle: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 20,
+    marginHorizontal: 16,
     color: 'rgba(255, 255, 255, 0.7)',
   },
   subtitleLight: {
