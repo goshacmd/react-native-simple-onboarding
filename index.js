@@ -21,8 +21,14 @@ export default class Onboarding extends Component {
     const page = Math.round(pageFraction);
     const isLastPage = this.props.pages.length === page + 1;
     if (isLastPage && pageFraction - page > 0.3) {
+      if (this.props.onScroll) {
+        this.props.onScroll();
+      }
       this.props.onEnd();
     } else {
+      if (this.props.onScroll) {
+        this.props.onScroll();
+      }
       this.setState({ currentPage: page });
     }
   };
