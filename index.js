@@ -63,7 +63,7 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, subtitle, titleStyles, subtitleStyles }, idx) => (
+          {pages.map(({ image, title, subtitle, titleStyles, subtitleStyles, renderFooter }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
@@ -74,6 +74,7 @@ export default class Onboarding extends Component {
               subtitleStyles={subtitleStyles}
               width={width}
               height={height}
+              renderFooter={renderFooter}
             />
           ))}
         </ScrollView>
@@ -100,6 +101,7 @@ Onboarding.propTypes = {
     image: PropTypes.element.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
+    renderFooter: PropTypes.element,
   })).isRequired,
   bottomOverlay: PropTypes.bool,
   showSkip: PropTypes.bool,

@@ -15,7 +15,7 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, image, title, subtitle, titleStyles, subtitleStyles, ...rest }) => (
+const PageData = ({ isLight, image, title, subtitle, titleStyles, subtitleStyles, renderFooter, ...rest }) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
@@ -27,6 +27,9 @@ const PageData = ({ isLight, image, title, subtitle, titleStyles, subtitleStyles
       <Text style={[styles.subtitle, subtitleStyles, (isLight ? styles.subtitleLight : {}) ]}>
         {subtitle}
       </Text>
+      {
+        renderFooter || null
+      }
     </PageContent>
   </Page>
 );
