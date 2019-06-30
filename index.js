@@ -21,8 +21,14 @@ export default class Onboarding extends Component {
     const page = Math.round(pageFraction);
     const isLastPage = this.props.pages.length === page + 1;
     if (isLastPage && pageFraction - page > 0.3) {
+      if (this.props.onScroll) {
+        this.props.onScroll();
+      }
       this.props.onEnd();
     } else {
+      if (this.props.onScroll) {
+        this.props.onScroll();
+      }
       this.setState({ currentPage: page });
     }
   };
@@ -42,7 +48,7 @@ export default class Onboarding extends Component {
 
   render() {
     const { width, height } = Dimensions.get('window');
-    const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
+    const { pages, bottomOverlay, showSkip, showNext, showDone, skipText } = this.props;
     const currentPage = pages[this.state.currentPage] || pages[0];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
@@ -57,7 +63,7 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, subtitle, titleStyles, subtitleStyles }, idx) => (
+          {pages.map(({ image, title, subtitle, titleStyles, subtitleStyles, renderFooter }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
@@ -68,12 +74,14 @@ export default class Onboarding extends Component {
               subtitleStyles={subtitleStyles}
               width={width}
               height={height}
+              renderFooter={renderFooter}
             />
           ))}
         </ScrollView>
         <Paginator
           isLight={isLight}
           overlay={bottomOverlay}
+          skipText={skipText}
           showSkip={showSkip}
           showNext={showNext}
           showDone={showDone}
@@ -93,9 +101,11 @@ Onboarding.propTypes = {
     image: PropTypes.element.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
+    renderFooter: PropTypes.element,
   })).isRequired,
   bottomOverlay: PropTypes.bool,
   showSkip: PropTypes.bool,
+  skipText: PropTypes.string,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
 };
