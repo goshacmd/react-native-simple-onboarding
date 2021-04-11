@@ -1,8 +1,26 @@
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
 
 import PageDots from './PageDots';
 import { SymbolButton, TextButton } from './Buttons';
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const RATIO = SCREEN_HEIGHT / SCREEN_WIDTH;
+
+const a = (small, regular, big, X, XMax) => {
+  switch (true) {
+    case SCREEN_HEIGHT === 896 || SCREEN_HEIGHT === 926:
+      return XMax !== undefined ? XMax : big !== undefined ? big : regular;
+    case SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 844:
+      return X !== undefined ? X : regular;
+    case SCREEN_WIDTH <= 360 || RATIO < 1.66:
+      return small;
+    case SCREEN_WIDTH < 414:
+      return regular;
+    default:
+      return big !== undefined ? big : regular;
+  }
+}
 
 const getDefaultStyle = (isLight) => ({
   color: isLight ? 'rgba(0, 0, 0, 0.8)' : '#fff',
@@ -54,8 +72,9 @@ const Paginator = ({ isLight, overlay, showSkip, showNext, showDone, pages, curr
 
 const styles = {
   container: {
-    height: 60,
+    height: a(60, 60, 60, 80, 80),
     paddingHorizontal: 0,
+    paddingBottom: a(0, 0, 0, 20, 20),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
