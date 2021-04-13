@@ -1,3 +1,11 @@
+## 0.1.3 (October 1, 2017)
+
+* Allow to customize the left button text and callback.
+
+## 0.1.2 (September 16, 2017)
+
+* Remove flicker when scrolling through pages with next button.
+
 ## 0.1.1 (October 11, 2016)
 
 * Detect light background and adapt the text and controls to it.

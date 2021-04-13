@@ -47,6 +47,8 @@ Props:
 * `showSkip` (optional): a bool flag indicating whether the Skip button should be show. Defaults to `true`.
 * `showNext` (optional): a bool flag indicating whether the Next arrow button should be show. Defaults to `true`.
 * `showDone` (optional): a bool flag indicating whether the Done checkmark button should be show. Defaults to `true`.
+* `onLeft` (optional): a callback that is fired when user taps on left button.
+* `leftText` (optional): text to show on left button. Should fit into 70px width. Defaults to `Skip`.
 
 ## To Do
 
